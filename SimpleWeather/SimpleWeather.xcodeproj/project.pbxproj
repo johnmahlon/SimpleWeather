@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		475423612A40FCB00018568E /* SimpleWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423602A40FCB00018568E /* SimpleWeatherApp.swift */; };
-		475423632A40FCB00018568E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423622A40FCB00018568E /* ContentView.swift */; };
 		475423652A40FCB10018568E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 475423642A40FCB10018568E /* Assets.xcassets */; };
 		475423682A40FCB10018568E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 475423672A40FCB10018568E /* Preview Assets.xcassets */; };
 		475423722A40FCB10018568E /* SimpleWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423712A40FCB10018568E /* SimpleWeatherTests.swift */; };
@@ -42,7 +41,6 @@
 /* Begin PBXFileReference section */
 		4754235D2A40FCB00018568E /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		475423602A40FCB00018568E /* SimpleWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWeatherApp.swift; sourceTree = "<group>"; };
-		475423622A40FCB00018568E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		475423642A40FCB10018568E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		475423672A40FCB10018568E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4754236D2A40FCB10018568E /* SimpleWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +109,6 @@
 				475423922A4135820018568E /* Networking */,
 				4754238A2A41015E0018568E /* UI */,
 				475423602A40FCB00018568E /* SimpleWeatherApp.swift */,
-				475423622A40FCB00018568E /* ContentView.swift */,
 				475423642A40FCB10018568E /* Assets.xcassets */,
 				475423662A40FCB10018568E /* Preview Content */,
 			);
@@ -302,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4754238C2A41016E0018568E /* HomeView.swift in Sources */,
-				475423632A40FCB00018568E /* ContentView.swift in Sources */,
 				47D0E09A2A41467F00A1B3D5 /* Locater.swift in Sources */,
 				475423612A40FCB00018568E /* SimpleWeatherApp.swift in Sources */,
 				475423942A41359F0018568E /* NWSAPI.swift in Sources */,

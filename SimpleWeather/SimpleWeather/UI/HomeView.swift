@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HomeView: View {
     
@@ -40,15 +41,16 @@ struct HomeView: View {
                 
             }
             .navigationTitle(locater.name ?? "SimpleWeather")
-//            .toolbar {
-//                Button {
-//                    locater.getLocation()
-//                } label: {
-//                    Image(systemName: "location")
-//                        .foregroundColor(colorScheme == .dark ? .white : .black)
-//                }
-//            }
+            .toolbar {
+                Button {
+                    locater.startLocation()
+                } label: {
+                    Image(systemName: "location")
+                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                }
+            }
         }
+        .searchable(text: $locater.searchText, placement: .toolbar)
     }
 }
 

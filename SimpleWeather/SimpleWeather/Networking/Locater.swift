@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 struct Coordinate {
     let id = UUID()
@@ -15,15 +16,20 @@ struct Coordinate {
 }
 
 class Locater: NSObject, ObservableObject {
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
+    private let geocoder = CLGeocoder()
     
     @Published var coordinates: Coordinate?
     @Published var status: CLAuthorizationStatus?
     @Published var name: String?
     
+    @Published var searchText: String = ""
+    
     static var hasLocationAccess: Bool {
         CLLocationManager.locationServicesEnabled()
     }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override init() {
         super.init()
@@ -31,6 +37,31 @@ class Locater: NSObject, ObservableObject {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        $searchText
+            .debounce(for: .seconds(2), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] text in
+                self?.searchLocation(locationName: text)
+            })
+            .store(in: &cancellables)
+    }
+    
+    func startLocation() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    private func searchLocation(locationName: String) {
+        
+        locationManager.stopUpdatingLocation()
+        
+        geocoder.geocodeAddressString(locationName) { [weak self] places, err in
+            guard let self else { return }
+            guard let place = places?.first else { return }
+            guard let location = place.location else { return }
+            
+            name = place.name
+            coordinates = Coordinate(x: location.coordinate.latitude, y: location.coordinate.longitude)
+        }
     }
 }
 
@@ -48,8 +79,7 @@ extension Locater: CLLocationManagerDelegate {
         print("updating location")
         
         coordinates = Coordinate(x: loc.coordinate.latitude, y: loc.coordinate.longitude)
-        
-        let geocoder = CLGeocoder()
+    
         geocoder.reverseGeocodeLocation(loc) { [weak self] places, error in
             guard let self else { return }
                 

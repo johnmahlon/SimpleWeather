@@ -20,8 +20,9 @@ struct WeatherView: View {
                     .font(.title2)
                 
                 Text(forecast.detailedForecast)
-                    .padding(.top, 16)
-            }.padding(32)
+                    .padding(.top, 8)
+                    .font(.caption)
+            }.padding(16)
             
             Spacer()
         }

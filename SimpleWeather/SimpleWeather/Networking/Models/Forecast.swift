@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct ForecastResponse: Decodable {
+struct Forecasts: Decodable {
+    let properties: ForecastProperties
+}
+
+struct ForecastProperties: Decodable {
+    let updated: String
     let periods: [Forecast]
 }
 

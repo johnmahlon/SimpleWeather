@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    var forecasts: [Forecast]
+    @State var forecasts: [Forecast]
     
     var body: some View {
         VStack {
@@ -17,7 +17,17 @@ struct HomeView: View {
                 ForEach(forecasts) { forecast in
                     WeatherView(forecast: forecast)
                 }
-            }.listStyle(.plain)
+            }
+            .listStyle(.plain)
+            .task {
+                do {
+                    forecasts = try await NWSAPI
+                        .getForecast(x: 36.113, y: -86.925)
+                } catch let err {
+                    print(err)
+                }
+                
+            }
         }
         
     }

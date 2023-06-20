@@ -12,7 +12,9 @@ struct HomeView: View {
     
     @StateObject var locater = Locater()
     @State var forecasts: [Forecast]
+    
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismissSearch) private var dismissSearch
     
     var body: some View {
         
@@ -51,6 +53,10 @@ struct HomeView: View {
             }
         }
         .searchable(text: $locater.searchText, placement: .toolbar)
+        .onSubmit(of: .search) {
+            locater.searchLocation(locationName: locater.searchText)
+            dismissSearch()
+        }
     }
 }
 

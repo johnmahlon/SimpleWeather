@@ -38,19 +38,19 @@ class Locater: NSObject, ObservableObject {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        $searchText
-            .debounce(for: .seconds(2), scheduler: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] text in
-                self?.searchLocation(locationName: text)
-            })
-            .store(in: &cancellables)
+//        $searchText
+//            .debounce(for: .seconds(2), scheduler: DispatchQueue.main)
+//            .sink(receiveValue: { [weak self] text in
+//                self?.searchLocation(locationName: text)
+//            })
+//            .store(in: &cancellables)
     }
     
     func startLocation() {
         locationManager.startUpdatingLocation()
     }
     
-    private func searchLocation(locationName: String) {
+    func searchLocation(locationName: String) {
         
         locationManager.stopUpdatingLocation()
         

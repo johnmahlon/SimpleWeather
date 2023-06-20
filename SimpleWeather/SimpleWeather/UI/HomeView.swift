@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    var forecasts: [Forecast]
+    
     var body: some View {
-        Text("hello")
+        VStack {
+            List {
+                ForEach(forecasts) { forecast in
+                    WeatherView(forecast: forecast)
+                }
+            }.listStyle(.plain)
+        }
+        
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(forecasts: [Forecast.sample, Forecast.sample2])
     }
 }

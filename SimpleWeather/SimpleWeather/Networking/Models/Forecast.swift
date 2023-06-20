@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct ForecastResponse: Decodable {
+    let periods: [Forecast]
+}
+
 struct Forecast: Decodable, Identifiable {
     
     var id: Int {

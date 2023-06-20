@@ -21,12 +21,11 @@ struct WeatherView: View {
                 
                 Text(forecast.detailedForecast)
                     .padding(.top, 8)
-                    .font(.caption)
-            }.padding(16)
+                    .font(.body)
+            }.padding(8)
             
             Spacer()
         }
-       
     }
 }
 

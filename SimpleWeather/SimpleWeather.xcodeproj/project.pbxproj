@@ -19,6 +19,7 @@
 		475423902A4101D70018568E /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4754238F2A4101D70018568E /* Forecast.swift */; };
 		475423942A41359F0018568E /* NWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423932A41359F0018568E /* NWSAPI.swift */; };
 		4754239A2A4139AB0018568E /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423992A4139AB0018568E /* Points.swift */; };
+		47D0E09A2A41467F00A1B3D5 /* Locater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D0E0992A41467F00A1B3D5 /* Locater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		4754238F2A4101D70018568E /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		475423932A41359F0018568E /* NWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWSAPI.swift; sourceTree = "<group>"; };
 		475423992A4139AB0018568E /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
+		47D0E0992A41467F00A1B3D5 /* Locater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locater.swift; sourceTree = "<group>"; };
+		47D0E09B2A414BCB00A1B3D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,7 @@
 		4754235F2A40FCB00018568E /* SimpleWeather */ = {
 			isa = PBXGroup;
 			children = (
+				47D0E09B2A414BCB00A1B3D5 /* Info.plist */,
 				475423922A4135820018568E /* Networking */,
 				4754238A2A41015E0018568E /* UI */,
 				475423602A40FCB00018568E /* SimpleWeatherApp.swift */,
@@ -162,6 +166,7 @@
 			children = (
 				475423912A4101DB0018568E /* Models */,
 				475423932A41359F0018568E /* NWSAPI.swift */,
+				47D0E0992A41467F00A1B3D5 /* Locater.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			files = (
 				4754238C2A41016E0018568E /* HomeView.swift in Sources */,
 				475423632A40FCB00018568E /* ContentView.swift in Sources */,
+				47D0E09A2A41467F00A1B3D5 /* Locater.swift in Sources */,
 				475423612A40FCB00018568E /* SimpleWeatherApp.swift in Sources */,
 				475423942A41359F0018568E /* NWSAPI.swift in Sources */,
 				4754239A2A4139AB0018568E /* Points.swift in Sources */,
@@ -389,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -443,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -463,6 +469,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SimpleWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "In order to receive a forecast, the NWS requires coordinates which this app uses location data to get";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -491,6 +499,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleWeather/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SimpleWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "In order to receive a forecast, the NWS requires coordinates which this app uses location data to get";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

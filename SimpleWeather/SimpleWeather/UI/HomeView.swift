@@ -9,27 +9,46 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @StateObject var locater = Locater()
     @State var forecasts: [Forecast]
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(forecasts) { forecast in
-                    WeatherView(forecast: forecast)
+        
+        NavigationView {
+            
+            VStack {
+                List {
+                    ForEach(forecasts) { forecast in
+                        WeatherView(forecast: forecast)
+                    }
                 }
-            }
-            .listStyle(.plain)
-            .task {
-                do {
-                    forecasts = try await NWSAPI
-                        .getForecast(x: 36.113, y: -86.925)
-                } catch let err {
-                    print(err)
+                .listStyle(.automatic)
+                .task(id: locater.coordinates?.id) {
+                    do {
+                        guard let coordinates = locater.coordinates else {
+                            return
+                        }
+                        
+                        forecasts = try await NWSAPI
+                            .getForecast(x: coordinates.x, y: coordinates.y)
+                    } catch let err {
+                        print(err)
+                    }
+                    
                 }
                 
             }
+            .navigationTitle(locater.name ?? "SimpleWeather")
+//            .toolbar {
+//                Button {
+//                    locater.getLocation()
+//                } label: {
+//                    Image(systemName: "location")
+//                        .foregroundColor(colorScheme == .dark ? .white : .black)
+//                }
+//            }
         }
-        
     }
 }
 

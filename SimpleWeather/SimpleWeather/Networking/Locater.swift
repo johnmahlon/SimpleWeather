@@ -36,7 +36,7 @@ class Locater: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
         
 //        $searchText
 //            .debounce(for: .seconds(2), scheduler: DispatchQueue.main)
@@ -47,12 +47,12 @@ class Locater: NSObject, ObservableObject {
     }
     
     func startLocation() {
-        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
     }
     
     func searchLocation(locationName: String) {
         
-        locationManager.stopUpdatingLocation()
+        //locationManager.stopUpdatingLocation()
         
         geocoder.geocodeAddressString(locationName) { [weak self] places, err in
             guard let self else { return }

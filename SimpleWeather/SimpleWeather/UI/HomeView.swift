@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OpenAI
 
 struct HomeView: View {
     
@@ -13,6 +14,8 @@ struct HomeView: View {
     @State var forecast: String = ""
     
     @Environment(\.colorScheme) var colorScheme
+    
+    let openAI = OpenAI(apiToken: Config.APIKeys.openAI)
     
     var data = """
 **Tonight**
@@ -23,9 +26,14 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
         NavigationStack {
             
             ScrollView {
-                LazyVStack {
-                    Text(.init(forecast))
-                        .padding(.horizontal, 16)
+                VStack {
+                    HStack {
+                        Text(.init(forecast))
+                            .padding(.horizontal, 16)
+                        
+                        Spacer()
+                    }
+                    
                     Spacer()
                 }
             }
@@ -33,8 +41,34 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
                 guard let coordinates = locater.coordinates else {
                     return
                 }
+                do {
+                    let prompt = try await Forecaster.shared.getForecast(x: coordinates.x, y: coordinates.y)
+                    
+                    let query = ChatQuery(
+                        model: .gpt3_5Turbo_16k,
+                        messages: [
+                            .init(
+                                role: .user,
+                                content: prompt
+                            )
+                        ]
+                    )
+                    
+                    do {
+                        print("off to OpenAI!!")
+                        
+                        for try await result in openAI.chatsStream(query: query) {
+                            forecast += result.choices.filter {$0.index == 0 }.first!.delta.content ?? "abcdef"
+                        }
+                        
+                    } catch let err {
+                        print(err.localizedDescription)
+                        forecast = "Error with OpenAI"
+                    }
+                } catch {
+                    // just fail silently
+                }
                 
-                forecast = await Forecaster.shared.getForecast(x: coordinates.x, y: coordinates.y)
             }
             .navigationTitle(locater.name ?? "SimpleWeather")
             .toolbar {

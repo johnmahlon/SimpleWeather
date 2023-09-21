@@ -20,10 +20,11 @@ enum NWSAPIError: Error {
 class NWSAPI {
     
     static let baseURL = "https://api.weather.gov/"
+    static let shared = NWSAPI()
     
-    private static func getForecastURL(x: Double, y: Double) async throws -> String {
+    private func getForecastURL(x: Double, y: Double) async throws -> String {
         
-        guard let url = URL(string: "\(baseURL)/points/\(x),\(y)") else {
+        guard let url = URL(string: "\(NWSAPI.baseURL)/points/\(x),\(y)") else {
             throw NWSAPIError.pointsURLInvalid
         }
         
@@ -44,10 +45,10 @@ class NWSAPI {
         }
     }
     
-    static func getForecast(x: Double, y: Double) async throws -> [Forecast] {
+    func getForecast(x: Double, y: Double) async throws -> [Forecast] {
         
         do {
-            let urlString = try await NWSAPI.getForecastURL(x: x, y: y)
+            let urlString = try await getForecastURL(x: x, y: y)
             guard let url = URL(string: urlString) else {
                 throw NWSAPIError.forecastURLInvalid
             }

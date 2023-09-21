@@ -16,7 +16,7 @@ struct ForecastProperties: Decodable {
     let periods: [Forecast]
 }
 
-struct Forecast: Decodable, Identifiable {
+struct Forecast: Codable, Identifiable {
     
     var id: Int {
         return self.number

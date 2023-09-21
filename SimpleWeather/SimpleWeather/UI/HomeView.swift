@@ -10,35 +10,31 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var locater = Locater()
-    @State var forecasts: [Forecast]
+    @State var forecast: String = ""
     
     @Environment(\.colorScheme) var colorScheme
     
+    var data = """
+**Tonight**
+Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be coming from the south-southeast at around 5 mph.
+"""
+    
     var body: some View {
-        
         NavigationStack {
             
-            VStack {
-                List {
-                    ForEach(forecasts) { forecast in
-                        WeatherView(forecast: forecast)
-                    }
+            ScrollView {
+                LazyVStack {
+                    Text(.init(forecast))
+                        .padding(.horizontal, 16)
+                    Spacer()
                 }
-                .listStyle(.automatic)
-                .task(id: locater.coordinates?.id) {
-                    do {
-                        guard let coordinates = locater.coordinates else {
-                            return
-                        }
-                        
-                        forecasts = try await NWSAPI
-                            .getForecast(x: coordinates.x, y: coordinates.y)
-                    } catch let err {
-                        print(err)
-                    }
-                    
+            }
+            .task(id: locater.coordinates?.id) {
+                guard let coordinates = locater.coordinates else {
+                    return
                 }
                 
+                forecast = await Forecaster.shared.getForecast(x: coordinates.x, y: coordinates.y)
             }
             .navigationTitle(locater.name ?? "SimpleWeather")
             .toolbar {
@@ -49,16 +45,16 @@ struct HomeView: View {
                         .foregroundColor(colorScheme == .dark ? .white : .black)
                 }
             }
-        }
-        .searchable(text: $locater.searchText, placement: .toolbar)
-        .onSubmit(of: .search) {
-            locater.searchLocation(locationName: locater.searchText)
+            .searchable(text: $locater.searchText, placement: .toolbar)
+            .onSubmit(of: .search) {
+                locater.searchLocation(locationName: locater.searchText)
+            }
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(forecasts: [Forecast.sample, Forecast.sample2])
+        HomeView(forecast: "Hello, world..")
     }
 }

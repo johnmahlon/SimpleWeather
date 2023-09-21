@@ -18,6 +18,9 @@
 		475423902A4101D70018568E /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4754238F2A4101D70018568E /* Forecast.swift */; };
 		475423942A41359F0018568E /* NWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423932A41359F0018568E /* NWSAPI.swift */; };
 		4754239A2A4139AB0018568E /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475423992A4139AB0018568E /* Points.swift */; };
+		476075772ABBF12B005F97DD /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 476075762ABBF12B005F97DD /* OpenAI */; };
+		476075792ABBF512005F97DD /* Forecaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476075782ABBF512005F97DD /* Forecaster.swift */; };
+		47B980502ABBE76E003B8A76 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B9804F2ABBE76E003B8A76 /* Config.swift */; };
 		47D0E09A2A41467F00A1B3D5 /* Locater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D0E0992A41467F00A1B3D5 /* Locater.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,8 @@
 		4754238F2A4101D70018568E /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		475423932A41359F0018568E /* NWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWSAPI.swift; sourceTree = "<group>"; };
 		475423992A4139AB0018568E /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
+		476075782ABBF512005F97DD /* Forecaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecaster.swift; sourceTree = "<group>"; };
+		47B9804F2ABBE76E003B8A76 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		47D0E0992A41467F00A1B3D5 /* Locater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locater.swift; sourceTree = "<group>"; };
 		47D0E09B2A414BCB00A1B3D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				476075772ABBF12B005F97DD /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +117,7 @@
 				475423602A40FCB00018568E /* SimpleWeatherApp.swift */,
 				475423642A40FCB10018568E /* Assets.xcassets */,
 				475423662A40FCB10018568E /* Preview Content */,
+				47B9804F2ABBE76E003B8A76 /* Config.swift */,
 			);
 			path = SimpleWeather;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 				475423912A4101DB0018568E /* Models */,
 				475423932A41359F0018568E /* NWSAPI.swift */,
 				47D0E0992A41467F00A1B3D5 /* Locater.swift */,
+				476075782ABBF512005F97DD /* Forecaster.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -184,6 +192,9 @@
 			dependencies = (
 			);
 			name = SimpleWeather;
+			packageProductDependencies = (
+				476075762ABBF12B005F97DD /* OpenAI */,
+			);
 			productName = SimpleWeather;
 			productReference = 4754235D2A40FCB00018568E /* SimpleWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +267,9 @@
 				Base,
 			);
 			mainGroup = 475423542A40FCB00018568E;
+			packageReferences = (
+				476075752ABBF12B005F97DD /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = 4754235E2A40FCB00018568E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -303,7 +317,9 @@
 				475423612A40FCB00018568E /* SimpleWeatherApp.swift in Sources */,
 				475423942A41359F0018568E /* NWSAPI.swift in Sources */,
 				4754239A2A4139AB0018568E /* Points.swift in Sources */,
+				47B980502ABBE76E003B8A76 /* Config.swift in Sources */,
 				4754238E2A4101AE0018568E /* WeatherView.swift in Sources */,
+				476075792ABBF512005F97DD /* Forecaster.swift in Sources */,
 				475423902A4101D70018568E /* Forecast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +645,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		476075752ABBF12B005F97DD /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		476075762ABBF12B005F97DD /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 476075752ABBF12B005F97DD /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 475423552A40FCB00018568E /* Project object */;
 }

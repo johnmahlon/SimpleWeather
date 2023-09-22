@@ -74,6 +74,7 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
             .toolbar {
                 Button {
                     locater.startLocation()
+                    forecast = ""
                 } label: {
                     Image(systemName: "location")
                         .foregroundColor(colorScheme == .dark ? .white : .black)
@@ -81,6 +82,7 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
             }
             .searchable(text: $locater.searchText, placement: .toolbar)
             .onSubmit(of: .search) {
+                forecast = ""
                 locater.searchLocation(locationName: locater.searchText)
             }
         }

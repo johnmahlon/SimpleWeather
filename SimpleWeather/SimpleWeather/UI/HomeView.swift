@@ -17,19 +17,13 @@ struct HomeView: View {
     
     let openAI = OpenAI(apiToken: Config.APIKeys.openAI)
     
-    var data = """
-**Tonight**
-Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be coming from the south-southeast at around 5 mph.
-"""
-    
     var body: some View {
         NavigationStack {
-            
             ScrollView {
                 VStack {
                     HStack {
                         Text(.init(forecast))
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, 24)
                         
                         Spacer()
                     }
@@ -45,8 +39,12 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
                     let prompt = try await Forecaster.shared.getForecast(x: coordinates.x, y: coordinates.y)
                     
                     let query = ChatQuery(
-                        model: .gpt3_5Turbo_16k,
+                        model: .gpt3_5Turbo,
                         messages: [
+                            .init(
+                                role: .system,
+                                content: Forecaster.preprompt
+                            ),
                             .init(
                                 role: .user,
                                 content: prompt
@@ -58,7 +56,7 @@ Tonight will be mostly cloudy with a low temperature of 63°F. The wind will be 
                         print("off to OpenAI!!")
                         
                         for try await result in openAI.chatsStream(query: query) {
-                            forecast += result.choices.filter {$0.index == 0 }.first!.delta.content ?? "abcdef"
+                            forecast += result.choices.filter {$0.index == 0 }.first!.delta.content ?? ""
                         }
                         
                     } catch let err {

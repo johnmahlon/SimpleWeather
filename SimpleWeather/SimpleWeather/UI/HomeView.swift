@@ -39,7 +39,7 @@ struct HomeView: View {
                     let prompt = try await Forecaster.shared.getForecast(x: coordinates.x, y: coordinates.y)
                     
                     let query = ChatQuery(
-                        model: .gpt3_5Turbo,
+                        model: "gpt-3.5-turbo-1106",
                         messages: [
                             .init(
                                 role: .system,
